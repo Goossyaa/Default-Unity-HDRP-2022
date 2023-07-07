@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7d2db98314fc904fa81236a0a67b3cf, type: 3}
+  m_Name: MainScene
+  m_EditorClassIdentifier: 
+  types:
+  - data: []
+  - data:
+    - saverType: 1
+      id_in_external_heap: 932123350
+      indentifierVersion: GlobalObjectId_V1
+      identifierTypetargetObjectIdtargetPrefabId: -2-634d48d1983e88540a717872d36af535-414005154-0
+      namesPathBackup: Main Camera
+      siblingsPathBackup: 0
+      boolValue: 0
+      stringValue: "\u043F\u0443\u043A"
+      highLighterData: []
+      iconData: []
+  - data: []
+  - data: []
+  - data: []
+  - data: []
+  - data: []
+  - data:
+    - saverType: 7
+      id_in_external_heap: 283096137
+      indentifierVersion: GlobalObjectId_V1
+      identifierTypetargetObjectIdtargetPrefabId: -2-634d48d1983e88540a717872d36af535-1555430187-0
+      namesPathBackup: Directional Light
+      siblingsPathBackup: 1
+      boolValue: 1
+      stringValue: 
+      highLighterData: []
+      iconData: []
+    - saverType: 7
+      id_in_external_heap: 135531964
+      indentifierVersion: GlobalObjectId_V1
+      identifierTypetargetObjectIdtargetPrefabId: -2-634d48d1983e88540a717872d36af535-1091212806-0
+      namesPathBackup: GameObject
+      siblingsPathBackup: 2
+      boolValue: 1
+      stringValue: 
+      highLighterData: []
+      iconData: []
+  BookMarks_InternalGlobal: []
+  HierExpands_InternalGlobal: []

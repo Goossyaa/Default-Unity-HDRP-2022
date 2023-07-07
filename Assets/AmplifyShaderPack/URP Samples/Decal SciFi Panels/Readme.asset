@@ -1,0 +1,69 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e78934177bebe0545ab566bb787b0282, type: 3}
+  m_Name: Readme
+  m_EditorClassIdentifier: 
+  Icon: {fileID: 2800000, guid: adacd56cdea184d4995c3d1990c66442, type: 3}
+  Title: Sci Fi Decals
+  Description:
+    Heading: 
+    Text: Sample making use of URP decal projector system.
+    LinkText: 
+    Url: 
+  PropertiesHeader:
+    Heading: Properties
+    Text: Scifi decals using a simple texture atlas.  Please note that Decals Render
+      Feature must be added to URP Pipeline Asset Renderer.
+    LinkText: 
+    Url: 
+  Properties:
+  - Heading: Base Color
+    Text: Albedo texture atlas to be applied to surface.
+    LinkText: 
+    Url: 
+  - Heading: Emissive
+    Text: Emission texture atlas to be applied to surface.
+    LinkText: 
+    Url: 
+  - Heading: Mask
+    Text: Packed decal texture atlas, Metallic(R), Ambient Occlusion(G), Detail Mask(B),
+      Smoothness(A).
+    LinkText: 
+    Url: 
+  - Heading: Normal
+    Text: Normals texture atlas to be applied to surface.
+    LinkText: 
+    Url: 
+  - Heading: Emission Tint - Intensity
+    Text: Emission color tint value.
+    LinkText: 
+    Url: 
+  - Heading: Tiling
+    Text: 'Atlas texture tiling value, used to set its size or repetition. '
+    LinkText: 
+    Url: 
+  - Heading: Offset
+    Text: Atlas texture position offset value.
+    LinkText: 
+    Url: 
+  - Heading: Emission Intensity
+    Text: Emission Intensity value.
+    LinkText: 
+    Url: 
+  - Heading: Emission Weight
+    Text: Emission Weight value.
+    LinkText: 
+    Url: 
+  AdditionalProperties: []
+  AdditionalScripts: []
+  LoadedLayout: 0
+  RPType: 2

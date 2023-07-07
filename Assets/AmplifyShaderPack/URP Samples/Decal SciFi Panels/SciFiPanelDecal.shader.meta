@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 611b96be1dfcf8b4e88bca3f088777bc
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures:
+  - _BaseColor: {fileID: 2800000, guid: 9058b7ce77d448f9a967080425fab9d4, type: 3}
+  - _Normal: {fileID: 2800000, guid: f59394e2460c4b4e97cf6f678b4a6532, type: 3}
+  - _Mask: {fileID: 2800000, guid: 860dd950cbaa4f16b9554bf71f25ae4f, type: 3}
+  - _Emissive: {fileID: 2800000, guid: 1566835bc2024388b365b715bfd7e1aa, type: 3}
+  nonModifiableTextures: []
+  preprocessorOverride: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

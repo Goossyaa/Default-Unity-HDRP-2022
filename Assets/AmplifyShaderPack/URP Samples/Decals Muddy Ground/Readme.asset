@@ -1,0 +1,62 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e78934177bebe0545ab566bb787b0282, type: 3}
+  m_Name: Readme
+  m_EditorClassIdentifier: 
+  Icon: {fileID: 2800000, guid: c067f84b50c326849b8724897bd1a30c, type: 3}
+  Title: Ground Decals
+  Description:
+    Heading: 
+    Text: Sample making use of URP decal projector system.
+    LinkText: 
+    Url: 
+  PropertiesHeader:
+    Heading: Properties
+    Text: Ground decals using a simple texture atlas. Please note that Decals Render
+      Feature must be added to URP Pipeline Asset Renderer.
+    LinkText: 
+    Url: 
+  Properties:
+  - Heading: Base Color
+    Text: Albedo texture atlas to be applied to surface.
+    LinkText: 
+    Url: 
+  - Heading: Mask
+    Text: Packed decal texture atlas, Metallic(R), Ambient Occlusion(G), Detail Mask(B),
+      Smoothness(A).
+    LinkText: 
+    Url: 
+  - Heading: Normal
+    Text: Normals texture atlas to be applied to surface.
+    LinkText: 
+    Url: 
+  - Heading: Smoothness Multiplier
+    Text: Smoothness multiplier value.
+    LinkText: 
+    Url: 
+  - Heading: Normal Intensity
+    Text: Normal intensity value.
+    LinkText: 
+    Url: 
+  - Heading: Decal Quantity
+    Text: Rows/column value of the decal atlas texture; set to 1 when using a single
+      decal.
+    LinkText: 
+    Url: 
+  - Heading: Decal Type
+    Text: Decal cell used depending on the Decal Quantity value.
+    LinkText: 
+    Url: 
+  AdditionalProperties: []
+  AdditionalScripts: []
+  LoadedLayout: 0
+  RPType: 2
