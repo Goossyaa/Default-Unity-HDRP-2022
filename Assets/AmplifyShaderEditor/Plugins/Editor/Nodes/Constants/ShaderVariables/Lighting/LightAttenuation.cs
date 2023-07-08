@@ -13,7 +13,7 @@ namespace AmplifyShaderEditor
 		static readonly string TemplateError = "This node will only produce proper attenuation if the template contains a shadow caster pass";
 
 		private const string ASEAttenVarName = "ase_lightAtten";
-		
+
 		private readonly string[] URP10PragmaMultiCompiles =
 		{
 			"multi_compile _ _MAIN_LIGHT_SHADOWS",
@@ -37,6 +37,15 @@ namespace AmplifyShaderEditor
 			"multi_compile _ _ADDITIONAL_LIGHTS_VERTEX _ADDITIONAL_LIGHTS",
 			"multi_compile_fragment _ _ADDITIONAL_LIGHT_SHADOWS",
 			"multi_compile_fragment _ _SHADOWS_SOFT"
+		};
+
+		private readonly string[] URP14PragmaMultiCompiles =
+		{
+			"multi_compile _ _MAIN_LIGHT_SHADOWS _MAIN_LIGHT_SHADOWS_CASCADE _MAIN_LIGHT_SHADOWS_SCREEN",
+			"multi_compile _ _ADDITIONAL_LIGHTS_VERTEX _ADDITIONAL_LIGHTS",
+			"multi_compile_fragment _ _ADDITIONAL_LIGHT_SHADOWS",
+			"multi_compile_fragment _ _SHADOWS_SOFT",
+			"multi_compile _ _FORWARD_PLUS"
 		};
 
 		//private readonly string[] LightweightVertexInstructions =
@@ -87,7 +96,11 @@ namespace AmplifyShaderEditor
 
 						// Pragmas
 						string[] pragmas;
-						if( ASEPackageManagerHelper.CurrentURPBaseline >= ASESRPBaseline.ASE_SRP_12 )
+						if ( ASEPackageManagerHelper.CurrentURPBaseline >= ASESRPBaseline.ASE_SRP_14 )
+						{
+							pragmas = URP14PragmaMultiCompiles;
+						}
+						else if ( ASEPackageManagerHelper.CurrentURPBaseline >= ASESRPBaseline.ASE_SRP_12 )
 						{
 							pragmas = URP12PragmaMultiCompiles;
 						}
@@ -100,10 +113,10 @@ namespace AmplifyShaderEditor
 							pragmas = URP10PragmaMultiCompiles;
 						}
 
-						for ( int i = 0; i < URP12PragmaMultiCompiles.Length; i++ )
+						for ( int i = 0; i < pragmas.Length; i++ )
 						{
-							dataCollector.AddToPragmas( UniqueId, URP12PragmaMultiCompiles[ i ] );
-						}							
+							dataCollector.AddToPragmas( UniqueId, pragmas[ i ] );
+						}
 
 						//string shadowCoords = dataCollector.TemplateDataCollectorInstance.GetShadowCoords( UniqueId/*, false, dataCollector.PortCategory*/ );
 						//return shadowCoords;

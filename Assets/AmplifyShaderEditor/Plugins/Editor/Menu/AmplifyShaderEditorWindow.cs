@@ -28,6 +28,8 @@ namespace AmplifyShaderEditor
 		public const string ObjectSelectorClosed = "ObjectSelectorClosed";
 		public const string LiveShaderError = "Live Shader only works with an assigned Master Node on the graph";
 
+		private const string OnlineSharingWarning = "Please enable \"Allow downloads over HTTP*\" in Player Settings to use the Online Sharing feature.";
+
 		//public Texture2D MasterNodeOnTexture = null;
 		//public Texture2D MasterNodeOffTexture = null;
 
@@ -1837,15 +1839,25 @@ namespace AmplifyShaderEditor
 				break;
 				case ToolButtonType.Share:
 				{
-					List<ParentNode> selectedNodes = m_mainGraphInstance.SelectedNodes;
-					if( selectedNodes.Count > 0 )
+#if UNITY_2022_1_OR_NEWER
+					if ( PlayerSettings.insecureHttpOption == InsecureHttpOption.NotAllowed )
 					{
-						CopyToClipboard();
-						StartPasteRequest();
+						Debug.LogWarning( "[AmplifyShaderEditor] " + OnlineSharingWarning );
+						ShowMessage( OnlineSharingWarning, MessageSeverity.Warning );
 					}
 					else
+#endif
 					{
-						ShowMessage( "No nodes selected to share" );
+						List<ParentNode> selectedNodes = m_mainGraphInstance.SelectedNodes;
+						if ( selectedNodes.Count > 0 )
+						{
+							CopyToClipboard();
+							StartPasteRequest();
+						}
+						else
+						{
+							ShowMessage( "No nodes selected to share" );
+						}
 					}
 				}
 				break;
@@ -3525,7 +3537,7 @@ namespace AmplifyShaderEditor
 		public void PasteRequest()
 		{
 			UnityWebRequest www = (UnityWebRequest)m_coroutine.Current;
-			if( !m_coroutine.MoveNext() )
+			if( !m_coroutine.MoveNext() && www != null )
 			{
 				if( !www.isDone )
 				{
@@ -3805,7 +3817,17 @@ namespace AmplifyShaderEditor
 			string result = EditorGUIUtility.systemCopyBuffer;
 			if( result.IndexOf( "http://paste.amplify.pt/view/raw/" ) > -1 )
 			{
-				StartGetRequest( result );
+#if UNITY_2022_1_OR_NEWER
+				if ( PlayerSettings.insecureHttpOption == InsecureHttpOption.NotAllowed )
+				{
+					Debug.LogWarning( "[AmplifyShaderEditor] " + OnlineSharingWarning );
+					ShowMessage( OnlineSharingWarning, MessageSeverity.Warning );
+				}
+				else
+#endif
+				{
+					StartGetRequest( result );
+				}
 				return;
 			}
 

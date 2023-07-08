@@ -39,7 +39,22 @@ namespace AmplifyShaderEditor
 		ASE_SRP_11 = 110000,
 		ASE_SRP_12 = 120000,
 		ASE_SRP_13 = 130000,
-		ASE_SRP_14 = 140000
+		ASE_SRP_14 = 140000,
+		ASE_SRP_15 = 150000
+	}
+
+	public class ASESRPPackageDesc
+	{
+		public ASESRPBaseline baseline = ASESRPBaseline.ASE_SRP_INVALID;
+		public string guidURP = string.Empty;
+		public string guidHDRP = string.Empty;
+
+		public ASESRPPackageDesc( ASESRPBaseline baseline, string guidURP, string guidHDRP )
+		{
+			this.baseline = baseline;
+			this.guidURP = guidURP;
+			this.guidHDRP = guidHDRP;
+		}
 	}
 
 	[Serializable]
@@ -55,20 +70,6 @@ namespace AmplifyShaderEditor
 
 		private static string SRPKeywordFormat = "ASE_SRP_VERSION {0}";
 
-		private class ASESRPPackageDesc
-		{
-			public ASESRPBaseline baseline = ASESRPBaseline.ASE_SRP_INVALID;
-			public string guidURP = string.Empty;
-			public string guidHDRP = string.Empty;
-
-			public ASESRPPackageDesc( ASESRPBaseline baseline, string guidURP, string guidHDRP )
-			{
-				this.baseline = baseline;
-				this.guidURP = guidURP;
-				this.guidHDRP = guidHDRP;
-			}
-		}
-
 		private static Dictionary<int, ASESRPPackageDesc> m_srpPackageSupport = new Dictionary<int,ASESRPPackageDesc>()
 		{
 			{ ( int )ASESRPBaseline.ASE_SRP_10, new ASESRPPackageDesc( ASESRPBaseline.ASE_SRP_10, "b460b52e6c1feae45b70b7ddc2c45bd6", "2243c8b4e1ab6914995699133f67ab5a" ) },
@@ -76,6 +77,7 @@ namespace AmplifyShaderEditor
 			{ ( int )ASESRPBaseline.ASE_SRP_12, new ASESRPPackageDesc( ASESRPBaseline.ASE_SRP_12, "57fcea0ed8b5eb347923c4c21fa31b57", "9a5e61a8b3421b944863d0946e32da0a" ) },
 			{ ( int )ASESRPBaseline.ASE_SRP_13, new ASESRPPackageDesc( ASESRPBaseline.ASE_SRP_13, "57fcea0ed8b5eb347923c4c21fa31b57", "9a5e61a8b3421b944863d0946e32da0a" ) },
 			{ ( int )ASESRPBaseline.ASE_SRP_14, new ASESRPPackageDesc( ASESRPBaseline.ASE_SRP_14, "2e9da72e7e3196146bf7d27450013734", "89f0b84148d149d4d96b838d7ef60e92" ) },
+			{ ( int )ASESRPBaseline.ASE_SRP_15, new ASESRPPackageDesc( ASESRPBaseline.ASE_SRP_15, "2e9da72e7e3196146bf7d27450013734", "89f0b84148d149d4d96b838d7ef60e92" ) },
 		};
 
 		private static Shader m_lateShader;
@@ -340,47 +342,51 @@ namespace AmplifyShaderEditor
 			Debug.Assert( flag == ASEImportFlags.HDRP || flag == ASEImportFlags.URP );
 
 			string path = AssetDatabase.GUIDToAssetPath( guid );
-			uint currentCRC = IOUtils.CRC32( File.ReadAllBytes( path ) );
 
-			string srpName = flag.ToString();
-			string packageBaseKey = string.Format( PackageBaseFormat, srpName, ProjectName );
-			string packageCRCKey = string.Format( PackageCRCFormat, srpName, ProjectName );
-
-			ASESRPBaseline savedBaseline = ( ASESRPBaseline )EditorPrefs.GetInt( packageBaseKey );
-			uint savedCRC = ( uint )EditorPrefs.GetInt( packageCRCKey, 0 );
-
-			bool foundNewVersion = ( savedBaseline != baseline ) || ( savedCRC != currentCRC );
-
-			EditorPrefs.SetInt( packageBaseKey, ( int )baseline );
-			EditorPrefs.SetInt( packageCRCKey, ( int )currentCRC );
-
-			string testPath0 = string.Empty;
-			string testPath1 = string.Empty;
-
-			switch ( flag )
+			if ( !string.IsNullOrEmpty( path ) && File.Exists( path ) )
 			{
-				case ASEImportFlags.URP:
-				{
-					testPath0 = AssetDatabase.GUIDToAssetPath( TemplatesManager.URPLitGUID );
-					testPath1 = AssetDatabase.GUIDToAssetPath( TemplatesManager.URPUnlitGUID );
-					break;
-				}
-				case ASEImportFlags.HDRP:
-				{
-					testPath0 = AssetDatabase.GUIDToAssetPath( TemplatesManager.HDRPLitGUID );
-					testPath1 = AssetDatabase.GUIDToAssetPath( TemplatesManager.HDRPUnlitGUID );
-					break;
-				}
-			}
+				uint currentCRC = IOUtils.CRC32( File.ReadAllBytes( path ) );
 
-			if ( !File.Exists( testPath0 ) || !File.Exists( testPath1 ) || foundNewVersion )
-			{
-				if ( foundNewVersion )
+				string srpName = flag.ToString();
+				string packageBaseKey = string.Format( PackageBaseFormat, srpName, ProjectName );
+				string packageCRCKey = string.Format( PackageCRCFormat, srpName, ProjectName );
+
+				ASESRPBaseline savedBaseline = ( ASESRPBaseline )EditorPrefs.GetInt( packageBaseKey );
+				uint savedCRC = ( uint )EditorPrefs.GetInt( packageCRCKey, 0 );
+
+				bool foundNewVersion = ( savedBaseline != baseline ) || ( savedCRC != currentCRC );
+
+				EditorPrefs.SetInt( packageBaseKey, ( int )baseline );
+				EditorPrefs.SetInt( packageCRCKey, ( int )currentCRC );
+
+				string testPath0 = string.Empty;
+				string testPath1 = string.Empty;
+
+				switch ( flag )
 				{
-					Debug.Log( string.Format( NewVersionDetectedFormat, srpName, version ) );
+					case ASEImportFlags.URP:
+					{
+						testPath0 = AssetDatabase.GUIDToAssetPath( TemplatesManager.URPLitGUID );
+						testPath1 = AssetDatabase.GUIDToAssetPath( TemplatesManager.URPUnlitGUID );
+						break;
+					}
+					case ASEImportFlags.HDRP:
+					{
+						testPath0 = AssetDatabase.GUIDToAssetPath( TemplatesManager.HDRPLitGUID );
+						testPath1 = AssetDatabase.GUIDToAssetPath( TemplatesManager.HDRPUnlitGUID );
+						break;
+					}
 				}
-				m_importingPackage |= flag;
-				StartImporting( path );
+
+				if ( !File.Exists( testPath0 ) || !File.Exists( testPath1 ) || foundNewVersion )
+				{
+					if ( foundNewVersion )
+					{
+						Debug.Log( string.Format( NewVersionDetectedFormat, srpName, version ) );
+					}
+					m_importingPackage |= flag;
+					StartImporting( path );
+				}
 			}
 		}
 
@@ -421,7 +427,7 @@ namespace AmplifyShaderEditor
 				}
 			}
 		}
-		
+
 		public static void SetSRPInfoOnDataCollector( ref MasterNodeDataCollector dataCollector )
 		{
 			if ( m_requireUpdateList )

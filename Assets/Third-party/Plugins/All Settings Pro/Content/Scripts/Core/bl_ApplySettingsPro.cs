@@ -63,7 +63,7 @@ public class bl_ApplySettingsPro : MonoBehaviour
         AudioListener.volume = _volumen;
         AudioListener.pause = (PlayerPrefs.GetInt(AllOptionsKeyPro.PauseAudio, 0) == 1 ? true : false);
         ShadowProjectionType(shadowProjection);
-        QualitySettings.masterTextureLimit = CurrentTL;
+        QualitySettings.globalTextureMipmapLimit = CurrentTL;
         QualitySettings.shadowCascades = ShadowCascadeOptions[CurrentSC];
         QualitySettings.SetQualityLevel(CurrentQuality);
         QualitySettings.realtimeReflectionProbes = _realtimeReflection;

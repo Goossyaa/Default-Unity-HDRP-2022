@@ -3,9 +3,9 @@ Shader /*ase_name*/ "Hidden/Universal/2D Lit" /*end*/
 	Properties
 	{
 		/*ase_props*/
-		[HideInInspector][NoScaleOffset]unity_Lightmaps("unity_Lightmaps", 2DArray) = "" {}
-        [HideInInspector][NoScaleOffset]unity_LightmapsInd("unity_LightmapsInd", 2DArray) = "" {}
-        [HideInInspector][NoScaleOffset]unity_ShadowMasks("unity_ShadowMasks", 2DArray) = "" {}
+		[HideInInspector][NoScaleOffset] unity_Lightmaps("unity_Lightmaps", 2DArray) = "" {}
+        [HideInInspector][NoScaleOffset] unity_LightmapsInd("unity_LightmapsInd", 2DArray) = "" {}
+        [HideInInspector][NoScaleOffset] unity_ShadowMasks("unity_ShadowMasks", 2DArray) = "" {}
 	}
 
 	SubShader
@@ -39,6 +39,9 @@ Shader /*ase_name*/ "Hidden/Universal/2D Lit" /*end*/
 		#pragma target 2.0
 		#pragma prefer_hlslcc gles
 		#pragma exclude_renderers d3d9 // ensure rendering platforms toggle list is visible
+
+		#include "Packages/com.unity.render-pipelines.core/ShaderLibrary/Common.hlsl"
+		#include "Packages/com.unity.render-pipelines.core/ShaderLibrary/Filtering.hlsl"
 		ENDHLSL
 
 		/*ase_pass*/
@@ -546,7 +549,7 @@ Shader /*ase_name*/ "Hidden/Universal/2D Lit" /*end*/
                 "LightMode" = "Picking"
             }
 
-            Cull Back
+			Cull Off
 
             HLSLPROGRAM
 

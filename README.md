@@ -1,41 +1,39 @@
-# Default Unity URP 2021
-Unity 2021.3.25f1
+# Default Unity HDRP 2022
+Unity 2022.3.4f1
   
 # Assets list
 ## Unity
-2D Animations - 7.0.10  
+2D Animations - 9.0.3 
 2D Sprite - 1.0.0  
-Animation Rigging - 1.1.1  
-Burst - 1.8.2  
+Animation Rigging - 1.2.1  
+Burst - 1.8.7  
 Localization - 1.3.2  
 Mathematics - 1.2.6  
-Cinemachine - 2.8.9  
+Cinemachine - 2.9.7  
 Post Processing - 3.2.2  
-Recorder - 3.0.3  
-Shader Graph - 12.1.10  
+Recorder - 4.0.1  
+Shader Graph - 14.0.8   
 TextMesh Pro - 3.0.6  
-Timeline - 1.6.4  
-Universal RP - 12.1.10  
-Visual Effect Graph - 12.1.10  
+Timeline - 1.7.5  
+High Definition RP - 14.0.8   
+Visual Effect Graph - 14.0.8  
 Visual Scripting - 1.8.0  
   
 ## Third-party
 ### Plugins
-Amplify Shader Editor - 1.9.1  
-Amplify Shader Pack - 1.0.3  
-Beautify 3 - 15.5  
+Amplify Shader Editor - 1.9.1.5  
 DOTween Pro - 1.0.310  
 Feel - 3.5  
 FMOD  
-Rewired - 1.1.41.5 
+Rewired - 1.1.45.0 
 All Settings Pro - 1.0.5  
 Fast script reload - 1.5
+UModeler - 2.9.20
 
 ### Editor
 Build Report - 3.4.14  
 ConsolePro  
-Grabbit - 2021.0.8  
-Hierarchy 2  
+Grabbit - 2021.0.8   
 Hierarchy Pro - Extended 2022.1.4  
 Shader Control - 6.2.1  
 SuperPivot  
@@ -52,7 +50,7 @@ Assets
 |	|---Textures		All images 
 |
 |---Audio
-|	|---Music
+|	|---Musics
 |	|---Sounds
 |
 |---Code
@@ -67,7 +65,7 @@ Assets
 |---Resource			Some Assets store their settings here. For example DOTween
 |
 |---Settings			User settings and configuration files
-| 	|---PostProcessing
+| 	|---Volume
 | 	|---Presets
 | 	|---Quality
 | 	|---Renderer
@@ -84,6 +82,35 @@ Assets
 
 
 # Changelog
+## [0.1.3] — 2023-07-08
+Created a repository using the template https://github.com/Goossyaa/Default-Unity-URP-2021
+
+### Added
+UModeler - 2.9.20
+
+Folder /Art/Textures/RendererTextures
+
+### Changed
+#### Unity
+Project version to 2022.03.4f1
+Render pipeline to HDRP
+Convert all materials to HDRP
+Updated packages
+
+Move Rewired to /Third-party/Plugins folder
+Updated Rewired to 1.1.45.0 
+
+AmplifyShaderEditor, HBAO to HDRP
+
+#### README.md
+Updated title, description, changelog, assets list, project structure
+
+### Removed
+Hierarchy 2, Beautify because of the unsupportability
+URP quality profiles
+
+---
+
 ## [0.1.2] — 2023-07-07
 
 ### Added
@@ -149,5 +176,4 @@ Bolt
 Renamed folder «zzz Trash zzz» to «zzzTrash» to get rid of the spaces  
   
 ## [0.0.1] — 2023-02-18
-
 Created a repository using the template https://github.com/Goossyaa/Default-Unity-URP  

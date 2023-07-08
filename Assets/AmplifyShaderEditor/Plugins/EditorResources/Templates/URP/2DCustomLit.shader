@@ -4,9 +4,9 @@ Shader /*ase_name*/ "Hidden/Universal/2D Custom Lit" /*end*/
     Properties
     {
 		/*ase_props*/
-        [HideInInspector][NoScaleOffset]unity_Lightmaps("unity_Lightmaps", 2DArray) = "" {}
-        [HideInInspector][NoScaleOffset]unity_LightmapsInd("unity_LightmapsInd", 2DArray) = "" {}
-        [HideInInspector][NoScaleOffset]unity_ShadowMasks("unity_ShadowMasks", 2DArray) = "" {}
+        [HideInInspector][NoScaleOffset] unity_Lightmaps("unity_Lightmaps", 2DArray) = "" {}
+        [HideInInspector][NoScaleOffset] unity_LightmapsInd("unity_LightmapsInd", 2DArray) = "" {}
+        [HideInInspector][NoScaleOffset] unity_ShadowMasks("unity_ShadowMasks", 2DArray) = "" {}
     }
 
     SubShader
@@ -435,7 +435,7 @@ Shader /*ase_name*/ "Hidden/Universal/2D Custom Lit" /*end*/
                 "LightMode" = "Picking"
             }
 
-            Cull Back
+			Cull Off
 			Blend Off
 			ZTest LEqual
 			ZWrite On

@@ -352,7 +352,7 @@ public class bl_AllOptionsPro : MonoBehaviour {
     public void TextureQuality(bool b)
     {
         CurrentTL = (b) ? (CurrentTL + 1) % 3 : (CurrentTL != 0) ? (CurrentTL - 1) % 3 : CurrentTL = 3;
-        QualitySettings.masterTextureLimit = CurrentTL;
+        QualitySettings.globalTextureMipmapLimit = CurrentTL;
         TextureLimitText.text = TextureQualityNames[CurrentTL];
     }
 
@@ -633,7 +633,7 @@ public class bl_AllOptionsPro : MonoBehaviour {
                 blendWeightsText.text = SkinWeights.FourBones.ToString().ToUpper();
                 break;
         }
-        QualitySettings.masterTextureLimit = CurrentTL;
+        QualitySettings.globalTextureMipmapLimit = CurrentTL;
         TextureLimitText.text = TextureQualityNames[CurrentTL];
 
 #if !UNITY_EDITOR
